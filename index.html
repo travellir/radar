@@ -104,11 +104,21 @@
  h2.sech .seca{font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;color:var(--muted);font-weight:400}
  #clear{font-size:14px;text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 9px;background:#fff}
  #clear:hover{border-color:var(--accent);color:var(--accent)}
+ .fb button.adm{display:none}
+ body.admin .fb button.adm{display:inline-block}
+ #admintog{margin-left:auto;cursor:pointer;color:#c8c0b5;font-size:15px;user-select:none;padding:2px 6px}
+ body.admin #admintog{color:var(--ink)}
+ #flagshead{cursor:pointer;display:none;user-select:none}
+ body.admin #flagshead{display:inline}
+ #flagsarea{display:none}
+ body.admin #flagsarea.open{display:contents}
+ #shareban{background:var(--teal-soft);border:1px solid var(--teal);border-radius:12px;padding:12px 16px;margin-bottom:18px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:13.5px}
+ #shareban a{color:var(--teal);font-weight:700}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><h1>🐒 Entertainment Radar</h1><span class="stamp">Updated Fri 7 Aug 2026 · ed.4.0</span></header>
+<header><h1>🐒 Entertainment Radar</h1><span class="stamp">Updated Fri 7 Aug 2026 · ed.4.1</span></header>
 
 <div class="bars">
  <div class="row" id="cats"><span class="lab">Category:</span><button data-c="all" class="on">All</button><button data-c="theatre">Theatre</button><button data-c="talks">Talks</button><button data-c="local">Local</button><button data-c="food">Food</button><button data-c="art">Art</button><button data-c="out">Outdoors</button><button data-c="lgbt">LGBT</button><button data-c="pubs">Pubs</button><button data-c="disco">Disco</button><button data-c="courses">Courses</button><button data-c="spa">Spa</button><button data-c="yoga">Yoga etc</button></div>
@@ -119,32 +129,30 @@
    <option value="thiswknd">This weekend</option><option value="nextwknd">Next weekend</option><option value="7">Next 7 days</option>
    <option value="pick">Pick a date…</option>
   </select>
-  <span class="chip" id="newC">New</span><span class="chip" id="freeC">Free</span><span class="chip" id="topC">Top picks</span><span class="chip" id="pinC">📌 Pinned</span>
-  <select id="travel" title="How far to look">
-   <option value="doorstep">🚶 Walking distance</option><option value="bike">🚲 Walk + bike</option>
-   <option value="tube" selected>🚇 Walk, bike + tube</option><option value="train">🚆 Everything + day trips</option>
-  </select>
+  <span class="chip" id="newC">New</span><span class="chip" id="topC" title="Top picks only">♥♥♥♥♥</span><span class="chip" id="pinC">📌 Pinned</span>
   <button id="clear" title="Clear all filters">✕</button>
   <span class="count" id="count"></span>
  </div>
  <div id="calwrap"></div>
 </div>
 
-<div class="alertbox" id="alertbox">
- <div class="alerthead"><h2>⚡ Book soon</h2><button id="abtoggle">Collapse ▴</button></div>
+<div class="alertbox closed" id="alertbox">
+ <div class="alerthead"><h2>⚡ Book soon</h2><button id="abtoggle">Expand ▾</button></div>
  <ul><li data-cat="theatre" data-d="2026-08-09"><span class="d">Sat–Sun 8–9 Aug</span><a href="https://www.thecockpit.org.uk" target="_blank"><b>Schrödinger's Lesbians</b></a> — Two matinee performances only at the Cockpit — a four-star sapphic fringe play, gone after Sunday.</li><li data-cat="art" data-d="2026-08-09"><span class="d">By Sun 9 Aug</span><a href="https://bac.org.uk/whats-on/the-art-of-mini-golf/" target="_blank"><b>The Art of Mini Golf</b></a> — Final weekend at Battersea Arts Centre — nine playable holes by female and non-binary artists, incl. Miranda July.</li><li data-cat="food" data-d="2026-08-09"><span class="d">Offer ends Sun 9 Aug</span><a href="https://secure.westendtheatre.com/book/1HHV2-chat-noir/" target="_blank"><b>Chat Noir! 46%-off dinner tickets</b></a> — The Lost Estate's Montmartre cabaret runs to 27 Sep, but the discounted dinner offer ends Sunday.</li><li data-cat="theatre" data-d="2026-08-15"><span class="d">By 15 Aug</span><a href="https://ohmaryplay.co.uk/ticket-info/" target="_blank"><b>Oh, Mary! — Cole Escola's last week</b></a> — Escola exits 15 Aug (Jinkx Monsoon 17 Aug–26 Sep; run now extended into Jan 2027).</li><li data-cat="out" data-d="2026-08-15"><span class="d">From 15 Aug</span><a href="https://www.barbican.org.uk/whats-on/2026/series/mastercard-outdoor-cinema-2026" target="_blank"><b>Barbican Outdoor Cinema</b></a> — Over half the season already sold out — Atlantics (21 Aug), Poetic Justice (27 Aug) and American Utopia (30 Aug) still have seats.</li><li data-cat="art" data-d="2026-08-18"><span class="d">On sale 18 Aug</span><a href="https://affordableartfair.com/fairs/london-battersea-autumn/" target="_blank"><b>Affordable Art Fair Battersea</b></a> — Tickets for the 14–18 Oct fair go on sale 18 Aug.</li><li data-cat="art" data-d="2026-08-19"><span class="d">Wed 19 Aug, noon</span><a href="https://programme.openhouse.org.uk/" target="_blank"><b>Open House ticketed bookings</b></a> — The best ticketed openings for 12–20 Sep release at noon and go within minutes.</li><li data-cat="theatre" data-d="2026-08-22"><span class="d">To 22 Aug</span><a href="https://southwarkplayhouse.co.uk/productions/ride-the-cyclone/" target="_blank"><b>Ride the Cyclone</b></a> — The cult musical closes at Southwark Playhouse Elephant — cheap seats going first.</li><li data-cat="theatre" data-d="2026-08-24"><span class="d">Previews to 24 Aug</span><a href="https://www.nationaltheatre.org.uk/productions/electra-persona/" target="_blank"><b>Electra/Persona</b></a> — The Blanchett/Hoss double at the National is the autumn's hottest ticket — the 19–24 Aug previews (£25–£82) are the affordable way in.</li><li data-cat="talks" data-d="2026-08-27"><span class="d">Reg by 27 Aug</span><a href="https://www.bigdataldn.com/en-gb/tickets.html" target="_blank"><b>Big Data LDN</b></a> — Free only if registered by 27 Aug; £49 after.</li><li data-cat="theatre" data-d="2026-08-29"><span class="d">To 29 Aug</span><a href="https://www.sadlerswells.com/whats-on/matthew-bournes-new-adventures-the-car-man/" target="_blank"><b>Matthew Bourne's The Car Man</b></a> — Closes 29 Aug with no extension — late-Aug availability is thinning.</li><li data-cat="courses" data-d="2026-08-31"><span class="d">Mon 31 Aug</span><a href="https://boneyardlondon.com/products/1-day-forge-a-viking-knife-course" target="_blank"><b>Boneyard forge day</b></a> — Two spaces left on the 31 Aug Viking-knife day.</li><li data-cat="talks" data-d="2026-09-05"><span class="d">Last few tickets</span><a href="https://www.southbankcentre.co.uk/whats-on/the-rest-is-entertainment-live/" target="_blank"><b>The Rest Is Entertainment: Live</b></a> — Osman + Hyde at the Royal Festival Hall, 5 Sep — down to the last few, from £51.</li><li data-cat="theatre" data-d="2026-09-27"><span class="d">25–27 Sep, one weekend</span><a href="https://punchdrunk.com" target="_blank"><b>Punchdrunk: Persephone screenings</b></a> — Limited-capacity Woolwich screenings; VIP tickets carry early booking access to Punchdrunk's next London show.</li><li data-cat="talks" data-d="2026-10-25"><span class="d">Last few tickets</span><a href="https://www.southbankcentre.co.uk/whats-on/dua-lipa-patti-smith-bread-of-angels/" target="_blank"><b>Patti Smith at London Literature Festival</b></a> — General sale opened Wednesday and the 25 Oct event is nearly gone (4-ticket limit).</li></ul>
 </div>
 
 <div id="out"></div>
 
 <footer>
- ed.4.0 · A curated view of what's on in south-east London and beyond · Refreshed weekly.<br>
+ ed.4.1 · A curated view of what's on in south-east London and beyond · Refreshed weekly.<br>
  Cards marked ♥♥♥♥♥ are the strongest picks. Expand a card with a programme to see every date and book directly.
 </footer>
 
-<div class="tray"><b>My flags:</b>
- <span class="tc">♥ <span id="cLove">0</span></span><span class="tc">📌 <span id="cBook">0</span></span><span class="tc">✓ <span id="cDone">0</span></span><span class="tc">✕ <span id="cLess">0</span></span><span class="tc">🚩 <span id="cErr">0</span></span>
- <button id="copyflags">Copy my flags</button> <button id="sharepins">Share my pins</button>
+<div class="tray">
+ <button id="sharepins">Share my pins</button>
+ <b id="flagshead">My flags ▸</b>
+ <span id="flagsarea"><span class="tc">♥ <span id="cLove">0</span></span><span class="tc">📌 <span id="cBook">0</span></span><span class="tc">✓ <span id="cDone">0</span></span><span class="tc">✕ <span id="cLess">0</span></span><span class="tc">🚩 <span id="cErr">0</span></span> <button id="copyflags">Copy my flags</button></span>
+ <span id="admintog" title="Admin mode — show feedback flags">⚙</span>
 </div>
 <div id="flagout" class="hidden"><button class="x" onclick="document.getElementById('flagout').classList.add('hidden')">✕</button>
  <b style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px">Your flags (copied to clipboard):</b>
@@ -158,8 +166,8 @@ var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
 var DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 var DKEYS=['sun','mon','tue','wed','thu','fri','sat'];
 var RINGS={doorstep:['doorstep'],bike:['doorstep','bike'],tube:['doorstep','bike','tube'],train:['doorstep','bike','tube','train']};
-var cats={all:true}, ring='tube';
-var onlyFree=false, onlyTop=false, onlyNew=false, onlyPin=false, range=null, flags={}, calOpen=false, calMonth=null, collapsed={};
+var cats={all:true}, ring='train';
+var onlyTop=false, onlyNew=false, onlyPin=false, range=null, flags={}, calOpen=false, calMonth=null, collapsed={_new:true}, pinsView=null;
 
 function d0(s){var d=new Date(s+'T00:00:00');d.setHours(0,0,0,0);return d}
 function today(){var d=new Date();d.setHours(0,0,0,0);return d}
@@ -172,9 +180,9 @@ function strip(s){return String(s||'').replace(/<[^>]+>/g,'').replace(/&amp;/g,'
 try{var P=new URLSearchParams(location.search);
  if(P.get('cat')){cats={};P.get('cat').split(/[+,\s]+/).forEach(function(k){if(k)cats[k]=true})}
  if(P.get('zone')){var zz=P.get('zone').split(/[+,\s]+/);['train','tube','bike','doorstep'].some(function(r){if(zz.indexOf(r)>=0){ring=r;return true}return false})}
- if(P.get('free')==='1')onlyFree=true;
  if(P.get('top')==='1')onlyTop=true;
  if(P.get('new')==='1')onlyNew=true;
+ if(P.get('pins')){pinsView=P.get('pins').split(',').filter(Boolean);if(!pinsView.length)pinsView=null}
  if(P.get('from')){range={a:d0(P.get('from')),b:d0(P.get('to')||P.get('from'))}}
  var deep=P.get('event');
 }catch(e){var deep=null}
@@ -184,8 +192,9 @@ function save(){try{localStorage.setItem('radarFlags',JSON.stringify(flags))}cat
 function syncURL(){try{var q=[];
  var c=Object.keys(cats).filter(function(k){return cats[k]});
  if(c.length&&!cats.all)q.push('cat='+c.join('+'));
- if(ring!=='tube')q.push('zone='+ring);
- if(onlyFree)q.push('free=1'); if(onlyTop)q.push('top=1'); if(onlyNew)q.push('new=1');
+ if(ring!=='train')q.push('zone='+ring);
+ if(onlyTop)q.push('top=1'); if(onlyNew)q.push('new=1');
+ if(pinsView)q.push('pins='+pinsView.join(','));
  if(range){q.push('from='+iso(range.a)); if(iso(range.b)!==iso(range.a))q.push('to='+iso(range.b))}
  history.replaceState(null,'',location.pathname+(q.length?'?'+q.join('&'):''))}catch(e){}}
 
@@ -205,9 +214,9 @@ function daysHit(c,r){ // weekly-recurring card: does a listed weekday fall insi
  for(var x=new Date(a);x<=b;x=addD(x,1)){if(dl.indexOf(DKEYS[x.getDay()])>=0)return true}
  return false}
 function cardHits(c){
+ if(pinsView&&pinsView.indexOf(c.slug)<0)return false;
  if(!cats.all&&!cats[c.cat])return false;
  if(!zoneOK(c.zone))return false;
- if(onlyFree&&!c.free)return false;
  if(onlyTop&&c.score<5)return false;
  if(onlyNew&&!c.n)return false;
  if(onlyPin&&flags[c.slug]!=='book')return false;
@@ -225,7 +234,7 @@ function cardHTML(c){
  var showSubs=range&&hits.length?hits:subs;
  var openIt=!!(range&&hits.length);
  var h='<div class="card s'+c.score+'" data-slug="'+c.slug+'">';
- h+='<div class="fb"><button data-f="love" title="More like this">♥</button><button data-f="book" title="Still to book">📌</button><button data-f="done" title="Booked it — tuck away below">✓</button><button data-f="less" title="Less like this">✕</button><button data-f="err" title="Listing looks wrong — flag for review">🚩</button><button data-f="link" title="Copy link">🔗</button></div>';
+ h+='<div class="fb"><button data-f="love" class="adm" title="More like this">♥</button><button data-f="book" title="Still to book">📌</button><button data-f="done" class="adm" title="Booked it — tuck away below">✓</button><button data-f="less" class="adm" title="Less like this">✕</button><button data-f="err" class="adm" title="Listing looks wrong — flag for review">🚩</button><button data-f="link" title="Copy link">🔗</button></div>';
  h+='<div class="row1"><a class="tt" href="'+c.url+'" target="_blank">'+c.title+'</a>'+(c.n?'<span class="newb">NEW</span>':'')+'<span class="stars">'+Array(c.score+1).join('♥')+'</span><span class="when">'+c.when+'</span></div>';
  if(c.where)h+='<div class="where">'+c.where+'</div>';
  h+='<div class="why">'+c.why+'</div>';
@@ -245,6 +254,14 @@ function subHTML(c,s,hit){
 
 function render(){
  var out=document.getElementById('out'), n=0, html='';
+ var newlist=DATA.filter(function(c){return c.n&&cardHits(c)&&flags[c.slug]!=='done'});
+ if(newlist.length){
+  var nc=!!collapsed._new;
+  html+='<h2 class="sech" data-sec="_new">✦ New this edition <span class="seca">'+(nc?'('+newlist.length+') ▸':'▾')+'</span></h2>';
+  html+='<div class="sec'+(nc?' hidden':'')+'">';
+  newlist.slice().sort(function(a,b){return b.score-a.score}).forEach(function(c){html+=cardHTML(c)});
+  html+='</div>';
+ }
  ORDER.forEach(function(cat){
   var list=DATA.filter(function(c){return c.cat===cat&&cardHits(c)&&flags[c.slug]!=='done'});
   if(!list.length)return;
@@ -256,7 +273,8 @@ function render(){
   html+='</div>';
  });
  var booked=DATA.filter(function(c){return flags[c.slug]==='done'});
- if(booked.length){
+ var filtered=!cats.all||onlyTop||onlyNew||onlyPin||!!range||ring!=='train'||!!pinsView;
+ if(booked.length&&!filtered){
   var bc=!!collapsed._bk;
   html+='<h2 class="sech" data-sec="_bk">✓ Booked <span class="seca">'+(bc?'('+booked.length+') ▸':'▾')+'</span></h2>';
   html+='<div class="sec'+(bc?' hidden':'')+'">';
@@ -271,7 +289,7 @@ function render(){
   var ok=(cats.all||cats[li.getAttribute('data-cat')]);
   if(ok&&range){var d=d0(li.getAttribute('data-d'));ok=d>=range.a&&d<=range.b||d>=today()&&range.a<=d}
   li.classList.toggle('hidden',!ok);if(ok)av++});
- document.getElementById('alertbox').classList.toggle('hidden',av===0);
+ document.getElementById('alertbox').classList.toggle('hidden',av===0||!!pinsView);
  paintFlags();
 }
 function paintFlags(){
@@ -287,7 +305,8 @@ function paintFlags(){
   cd.querySelectorAll('.fb button[data-f]').forEach(function(btn){
    var k=btn.getAttribute('data-f');
    if(k==='link')return;
-   btn.className=(f===k)?'on-'+k:''})})}
+   var adm=(k==='book')?'':'adm ';
+   btn.className=adm+((f===k)?'on-'+k:'')})})}
 
 // ---- calendar (lives inside the "Pick a date…" option of the When dropdown) ----
 function buildCal(){
@@ -332,8 +351,6 @@ document.querySelectorAll('#cats button').forEach(function(b){b.onclick=function
   if(!Object.keys(cats).some(function(k){return cats[k]}))cats={all:true}}
  document.querySelectorAll('#cats button').forEach(function(x){x.classList.toggle('on',!!cats[x.getAttribute('data-c')])});
  syncURL();render()}});
-document.getElementById('travel').onchange=function(){ring=this.value;syncURL();render()};
-document.getElementById('freeC').onclick=function(){onlyFree=!onlyFree;this.classList.toggle('on',onlyFree);syncURL();render()};
 document.getElementById('topC').onclick=function(){onlyTop=!onlyTop;this.classList.toggle('on',onlyTop);syncURL();render()};
 document.getElementById('newC').onclick=function(){onlyNew=!onlyNew;this.classList.toggle('on',onlyNew);syncURL();render()};
 document.getElementById('pinC').onclick=function(){onlyPin=!onlyPin;this.classList.toggle('on',onlyPin);render()};
@@ -349,10 +366,10 @@ document.getElementById('quick').onchange=function(){
   range={a:fri,b:addD(fri,2)}}
  buildCal();syncURL();render()};
 document.getElementById('clear').onclick=function(){
- cats={all:true};ring='tube';onlyFree=false;onlyTop=false;onlyNew=false;onlyPin=false;range=null;calOpen=false;collapsed={};
- document.getElementById('quick').value='';document.getElementById('travel').value='tube';
+ cats={all:true};ring='train';onlyTop=false;onlyNew=false;onlyPin=false;range=null;calOpen=false;collapsed={_new:true};
+ document.getElementById('quick').value='';
  document.querySelectorAll('#cats button').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-c')==='all')});
- ['freeC','topC','newC','pinC'].forEach(function(id){document.getElementById(id).classList.remove('on')});
+ ['topC','newC','pinC'].forEach(function(id){document.getElementById(id).classList.remove('on')});
  buildCal();syncURL();render()};
 document.getElementById('abtoggle').onclick=function(){
  var a=document.getElementById('alertbox');a.classList.toggle('closed');
@@ -391,19 +408,32 @@ document.getElementById('copyflags').onclick=function(){
 document.getElementById('sharepins').onclick=function(){
  var B=DATA.filter(function(c){return flags[c.slug]==='book'});
  var s;
- if(!B.length)s='(no 📌 pins yet)';
- else{s='Still to book — from my Entertainment Radar:\n';
+ if(!B.length)s='(no 📌 pins yet — tap 📌 on any card first)';
+ else{var link;try{link=location.origin+location.pathname+'?pins='+B.map(function(c){return c.slug}).join(',')}catch(e){link=''}
+  s=(link?'My pinned list (live page): '+link+'\n\n':'')+'Still to book — from my Entertainment Radar:\n';
   B.forEach(function(c){s+='• '+strip(c.title)+' — '+strip(c.when)+' — '+strip(c.where||'')+'\n  '+c.url+'\n'})}
  var ta=document.getElementById('flagtext');ta.value=s;
  document.getElementById('flagout').classList.remove('hidden');ta.select();
  try{navigator.clipboard.writeText(s)}catch(e){}};
 
-document.getElementById('travel').value=ring;
 document.querySelectorAll('#cats button').forEach(function(x){x.classList.toggle('on',!!cats[x.getAttribute('data-c')])});
-document.getElementById('freeC').classList.toggle('on',onlyFree);
 document.getElementById('topC').classList.toggle('on',onlyTop);
 document.getElementById('newC').classList.toggle('on',onlyNew);
 if(range)document.getElementById('quick').value='pick';
+var admin=false;try{admin=localStorage.getItem('radarAdmin')==='1'}catch(e){}
+if(admin)document.body.classList.add('admin');
+document.getElementById('admintog').onclick=function(){admin=!admin;
+ document.body.classList.toggle('admin',admin);
+ try{localStorage.setItem('radarAdmin',admin?'1':'0')}catch(e){}};
+document.getElementById('flagshead').onclick=function(){
+ var a=document.getElementById('flagsarea');a.classList.toggle('open');
+ this.textContent=a.classList.contains('open')?'My flags ▾':'My flags ▸'};
+if(pinsView){
+ var pm=DATA.filter(function(c){return pinsView.indexOf(c.slug)>=0}).length;
+ var bd=document.createElement('div');bd.id='shareban';
+ bd.innerHTML='📌 You\'re viewing a shared pinned list · '+pm+' event'+(pm===1?'':'s')+' · <a href="'+location.pathname+'">See the full radar →</a>';
+ document.querySelector('.wrap').insertBefore(bd,document.querySelector('.bars'));
+}
 render();
 if(deep){var el=document.querySelector('.card[data-slug="'+deep+'"]');
  if(el){setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('flash');
