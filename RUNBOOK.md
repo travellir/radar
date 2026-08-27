@@ -46,6 +46,7 @@ Stamp appears twice: header `.stamp` and footer.
 ## Content rules (page is shared with others)
 - Neutral editorial voice; no second person; no "watchlist" wording on the page.
 - Direct booking links only. Date-check everything against today.
+- Link straight to the onward booking page, never an aggregator/listing page (e.g. immersiverumours.com/current-shows-london lists many shows on one page) — resolve each show to its own ticket link (e.g. "Our Failed State" -> https://www.eventbrite.com/e/our-failed-state-is-beautiful-tickets-1985363759449).
 - Never relist (confirmed dead/closed): Gingerline, The Grand Expedition,
   The Lodge Space, Free Range open mic at The Glitch, Goldie Saloon,
   Queer Brewing Taproom.
